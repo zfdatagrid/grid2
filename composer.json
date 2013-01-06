@@ -1,0 +1,14 @@
+{
+    "name": "bvb/grid",
+    "description": "A DataGrid for Zend Framework",
+	"license": "New BSD License",
+    "keywords": [
+        "zfdatagrid",
+        "grid"
+    ],
+    "homepage": "http://zfdatagrid.com/",
+    "require": {
+        "php": ">=5.3.3",
+        "zendframework/zendframework": "2.*"
+    }
+}
