@@ -1,4 +1,8 @@
 <?php
+namespace Bvb\Grid\Source;
+
+use Bvb\Grid\Source\Db\DbAbstract;
+use Bvb\Grid\Source\Doctrine2\Exception as ExceptionDoctrine2;
 
 use Doctrine\ORM\EntityRepository,
     Doctrine\ORM\QueryBuilder,
@@ -13,10 +17,10 @@ use Doctrine\ORM\EntityRepository,
  * Provides you the ability to use Doctrine as a source
  * with the Grid.
  *
- * @package   Bvb_Grid
+ * @package   Bvb\Grid
  * @author Martin Parsiegla <martin.parsiegla@speanet.info>
  */
-class Bvb_Grid_Source_Doctrine2 extends Bvb_Grid_Source_Db_DbAbstract implements Bvb_Grid_Source_SourceInterface
+class Doctrine2 extends DbAbstract implements SourceInterface
 {
 
     /**
@@ -101,10 +105,10 @@ class Bvb_Grid_Source_Doctrine2 extends Bvb_Grid_Source_Db_DbAbstract implements
             } elseif (Zend_Registry::isRegistered('EntityManager')) {
                 $entityManager = Zend_Registry::get('EntityManager');
             } else {
-                throw new Bvb_Grid_Source_Doctrine2_Exception('No suitable EntityManager found in registry, please set a specific one.');
+                throw new ExceptionDoctrine2('No suitable EntityManager found in registry, please set a specific one.');
             }
         } elseif (!($entityManager instanceof EntityManager)) {
-            throw new Bvb_Grid_Source_Doctrine2_Exception('Parameter must be an instance of \Doctrine\ORM\EntityManager');
+            throw new ExceptionDoctrine2('Parameter must be an instance of \Doctrine\ORM\EntityManager');
         }
 
         $this->entityManager = $entityManager;
@@ -124,7 +128,7 @@ class Bvb_Grid_Source_Doctrine2 extends Bvb_Grid_Source_Db_DbAbstract implements
      * Sets the query builder.
      *
      * @param string|EntityManager|EntityRepository $value
-     * @return Bvb_Grid_Source_Doctrine2
+     * @return Bvb\Grid\Source\Doctrine2
      */
     public function setQueryBuilder($value)
     {
@@ -134,14 +138,14 @@ class Bvb_Grid_Source_Doctrine2 extends Bvb_Grid_Source_Db_DbAbstract implements
             $em = $this->getEntityManager();
             //check if the class exists, surpress any warnings
             if (!@class_exists($value, true)) {
-                throw new Bvb_Grid_Source_Doctrine2_Exception('Entity with name ' . $value . ' does not exist.');
+                throw new ExceptionDoctrine2('Entity with name ' . $value . ' does not exist.');
             }
 
             $qb = $em->getRepository($value)->createQueryBuilder('d');
         } elseif ($value instanceof EntityRepository) {
             $qb = $value->createQueryBuilder('d');
         } elseif (!($value instanceof QueryBuilder)) {
-            throw new Bvb_Grid_Source_Doctrine2_Exception('Parameter must be an instance of \Doctrine\ORM\EntityRepository or \Doctrine\ORM\QueryBuilder.');
+            throw new ExceptionDoctrine2('Parameter must be an instance of \Doctrine\ORM\EntityRepository or \Doctrine\ORM\QueryBuilder.');
         } else {
             $qb = $value;
         }
@@ -162,7 +166,7 @@ class Bvb_Grid_Source_Doctrine2 extends Bvb_Grid_Source_Db_DbAbstract implements
      * @param $filter
      * @param $op
      * @param $completeField
-     * @return Bvb_Grid_Source_Doctrine
+     * @return Bvb\Grid\Source\Doctrine
      */
     public function addCondition($filter, $op, $completeField)
     {
@@ -305,7 +309,7 @@ class Bvb_Grid_Source_Doctrine2 extends Bvb_Grid_Source_Db_DbAbstract implements
 
     public function addFullTextSearch($filter, $field)
     {
-        throw new Bvb_Grid_Source_Doctrine2_Exception("Fulltext searching is currently not supported by the Doctrine2 source.");
+        throw new ExceptionDoctrine2("Fulltext searching is currently not supported by the Doctrine2 source.");
     }
 
     /**
@@ -457,7 +461,7 @@ class Bvb_Grid_Source_Doctrine2 extends Bvb_Grid_Source_Db_DbAbstract implements
     /**
      * Will build out an array of form elements,
      * based on the column type and return the array
-     * to be used when loading the Bvb_Grid_Form
+     * to be used when loading the Bvb\Grid\Form
      *
      * @param array $cols
      * @param array $info
@@ -591,7 +595,7 @@ class Bvb_Grid_Source_Doctrine2 extends Bvb_Grid_Source_Db_DbAbstract implements
                     if (is_object($field)) {
                         $method = 'get' . ucfirst($primaryColumn);
                         if (!method_exists($field, $method)) {
-                            throw new Bvb_Grid_Source_Doctrine2_Exception('No getter method for the primary field found (used name: ' . $method . ').');
+                            throw new ExceptionDoctrine2('No getter method for the primary field found (used name: ' . $method . ').');
                         }
                         $final['values'][$column][$field->$method()] = $field->__toString();
                     } else {
@@ -1134,7 +1138,7 @@ class Bvb_Grid_Source_Doctrine2 extends Bvb_Grid_Source_Db_DbAbstract implements
 
     public function getTableList()
     {
-        throw new Bvb_Grid_Source_Doctrine2_Exception('Not yet implemented.');
+        throw new ExceptionDoctrine2('Not yet implemented.');
     }
 
     /**
@@ -1188,7 +1192,7 @@ class Bvb_Grid_Source_Doctrine2 extends Bvb_Grid_Source_Db_DbAbstract implements
      */
     public function getValuesForFiltersFromTable($table, $field, $fieldValue, $order = 'name ASC')
     {
-        throw new Bvb_Grid_Source_Doctrine2_Exception('Not yet Implemented.');
+        throw new ExceptionDoctrine2('Not yet Implemented.');
     }
 
     /**
@@ -1237,7 +1241,7 @@ class Bvb_Grid_Source_Doctrine2 extends Bvb_Grid_Source_Db_DbAbstract implements
     /**
      * Removes any limit in query
      *
-     * @return Bvb_Grid_Source_Doctrine
+     * @return Bvb\Grid\Source\Doctrine
      */
     public function resetLimit()
     {
@@ -1251,7 +1255,7 @@ class Bvb_Grid_Source_Doctrine2 extends Bvb_Grid_Source_Db_DbAbstract implements
     /**
      * Removes any order in query
      *
-     * @return Bvb_Grid_Source_Doctrine
+     * @return Bvb\Grid\Source\Doctrine
      */
     public function resetOrder()
     {
@@ -1483,7 +1487,7 @@ class Bvb_Grid_Source_Doctrine2 extends Bvb_Grid_Source_Db_DbAbstract implements
         if (!is_string($column)) {
             $type = gettype($column);
             require_once 'Bvb/Grid/Source/Doctrine/Exception.php';
-            throw new Bvb_Grid_Source_Doctrine2_Exception('The $column param needs to be a string, ' . $type . ' provided');
+            throw new ExceptionDoctrine2('The $column param needs to be a string, ' . $type . ' provided');
         }
 
         if (strpos($column, '.') === false) {
@@ -1525,7 +1529,7 @@ class Bvb_Grid_Source_Doctrine2 extends Bvb_Grid_Source_Db_DbAbstract implements
             }
         }
         if (is_null($field)) {
-            throw new Bvb_Grid_Source_Doctrine2_Exception("No field found.");
+            throw new ExceptionDoctrine2("No field found.");
         }
 
         //iterate over the fromparts, get the metadata from it and
@@ -1540,7 +1544,7 @@ class Bvb_Grid_Source_Doctrine2 extends Bvb_Grid_Source_Db_DbAbstract implements
             }
         }
 
-        throw new Bvb_Grid_Source_Doctrine2_Exception("No model found.");
+        throw new ExceptionDoctrine2("No model found.");
     }
 
     /**

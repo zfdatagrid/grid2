@@ -10,14 +10,20 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package   Bvb_Grid
+ * @package   Bvb\Grid
  * @author    Bento Vilas Boas <geral@petala-azul.com>
  * @copyright 2010 ZFDatagrid
  * @license   http://www.petala-azul.com/bsd.txt   New BSD License
  * @version   $Id: Select.php 1918 2012-05-06 17:06:38Z bento@licentia.pt $
  * @link      http://zfdatagrid.com
  */
-class Bvb_Grid_Source_Zend_Select extends Bvb_Grid_Source_Db_DbAbstract implements Bvb_Grid_Source_SourceInterface {
+namespace Bvb\Grid\Source\Zend;
+
+use Bvb\Grid\Source\Db\DbAbstract;
+use Bvb\Grid\Source\SourceInterface;
+use Bvb\Grid\Exception;
+
+class Select extends DbAbstract implements SourceInterface {
 
     /**
      *
@@ -66,12 +72,12 @@ class Bvb_Grid_Source_Zend_Select extends Bvb_Grid_Source_Db_DbAbstract implemen
      *
      * @param Zend_Db_Select $select Select instance
      *
-     * @return Bvb_Grid_Source_Zend_Select
+     * @return Bvb\Grid\Source\Zend\Select
      */
     public function __construct(Zend_Db_Select $select)
     {
         if (count($select->getPart('UNION')) > 0) {
-            throw new Bvb_Grid_Exception('UNION queries not supported yet');
+            throw new Exception('UNION queries not supported yet');
         }
 
         $this->_select = $select;
@@ -109,7 +115,7 @@ class Bvb_Grid_Source_Zend_Select extends Bvb_Grid_Source_Db_DbAbstract implemen
      *
      * @param Zend_Db_Adapter_Abstract $db DB instance
      *
-     * @return Bvb_Grid_Source_Zend_Select
+     * @return Bvb\Grid\Source\Zend\Select
      */
     protected function _setDb(Zend_Db_Adapter_Abstract $db)
     {
@@ -633,7 +639,7 @@ class Bvb_Grid_Source_Zend_Select extends Bvb_Grid_Source_Db_DbAbstract implemen
      * @param string $order Query Sort Order
      * @param bool   $reset If we should reset the current order
      *
-     * @return Bvb_Grid_Source_Zend_Select
+     * @return Bvb\Grid\Source\Zend\Select
      */
     public function buildQueryOrder($field, $order, $reset = false)
     {
@@ -891,7 +897,7 @@ class Bvb_Grid_Source_Zend_Select extends Bvb_Grid_Source_Db_DbAbstract implemen
         $extra = isset($full['extra']) ? $full['extra'] : 'boolean';
 
         if (!in_array($extra, array('boolean', 'queryExpansion', false))) {
-            throw new Bvb_Grid_Exception('Unrecognized value in extra key');
+            throw new Exception('Unrecognized value in extra key');
         }
 
         if ($extra == 'boolean') {
@@ -1164,7 +1170,7 @@ class Bvb_Grid_Source_Zend_Select extends Bvb_Grid_Source_Db_DbAbstract implemen
     /**
      * Resets current query order
      *
-     * @return Bvb_Grid_Source_Zend_Select
+     * @return Bvb\Grid\Source\Zend\Select
      */
     public function resetOrder()
     {
@@ -1175,7 +1181,7 @@ class Bvb_Grid_Source_Zend_Select extends Bvb_Grid_Source_Db_DbAbstract implemen
     /**
      * Resets query limit
      *
-     * @return Bvb_Grid_Source_Zend_Select
+     * @return Bvb\Grid\Source\Zend\Select
      */
     public function resetLimit()
     {
@@ -1225,7 +1231,7 @@ class Bvb_Grid_Source_Zend_Select extends Bvb_Grid_Source_Db_DbAbstract implemen
      * @param array $info       Optional - Model Info
      * @param type  $inputsType Elements type (password, text, select...)
      *
-     * @return Bvb_Grid_Source_Zend_Select
+     * @return Bvb\Grid\Source\Zend\Select
      */
     public function buildFormElements($cols, $info = array(), $inputsType = array(),$relationMap)
     {

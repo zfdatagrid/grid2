@@ -10,14 +10,16 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package   Bvb_Grid
+ * @package   Bvb\Grid
  * @author    Bento Vilas Boas <geral@petala-azul.com>
  * @copyright 2010 ZFDatagrid
  * @license   http://www.petala-azul.com/bsd.txt   New BSD License
  * @version   $Id: Json.php 1796 2011-07-01 22:54:02Z bento.vilas.boas@gmail.com $
  * @link      http://zfdatagrid.com
  */
-class Bvb_Grid_Source_Json extends Bvb_Grid_Source_Array {
+namespace Bvb\Grid\Source;
+
+class Json extends PhpArray {
 
     public function __construct($array, $loop = null, $columns = null, $cache = null)
     {

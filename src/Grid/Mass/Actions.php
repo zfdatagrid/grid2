@@ -10,14 +10,18 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package   Bvb_Grid
+ * @package   Bvb\Grid
  * @author    Bento Vilas Boas <geral@petala-azul.com>
  * @copyright 2010 ZFDatagrid
  * @license   http://www.petala-azul.com/bsd.txt   New BSD License
  * @version   $Id: Actions.php 1928 2012-05-06 19:38:47Z bento@licentia.pt $
  * @link      http://zfdatagrid.com
  */
-class Bvb_Grid_Mass_Actions {
+namespace Bvb\Grid\Mass;
+
+use Bvb\Grid\Exception;
+
+class Actions {
 
     /**
      * Mass Actions
@@ -88,7 +92,7 @@ class Bvb_Grid_Mass_Actions {
      * @param array $options Options to be made available to user
      * @param type $fields  Fields to be used
      *
-     * @return Bvb_Grid
+     * @return Bvb\Grid
      */
     public function setMassActions(array $options, $fields = null)
     {
@@ -102,7 +106,7 @@ class Bvb_Grid_Mass_Actions {
     /**
      * Clears all mass actions previously defined
      *
-     * @return Bvb_Grid
+     * @return Bvb\Grid
      */
     public function clearMassActions()
     {
@@ -117,7 +121,7 @@ class Bvb_Grid_Mass_Actions {
      * @param type $caption Caption for the select option
      * @param type $confirm Confirmation message when submiting
      *
-     * @return Bvb_Grid
+     * @return Bvb\Grid
      */
     public function setMassAction($url, $caption, $confirm='')
     {
@@ -135,7 +139,7 @@ class Bvb_Grid_Mass_Actions {
      * @param type $caption Caption for the select option
      * @param type $confirm Confirmation message when submiting
      *
-     * @return Bvb_Grid
+     * @return Bvb\Grid
      */
     public function addMassAction($url, $caption, $confirm='')
     {
@@ -152,14 +156,14 @@ class Bvb_Grid_Mass_Actions {
      * @param array $options Options to be made available to user
      * @param type $fields  Fields to be used
      *
-     * @return Bvb_Grid
+     * @return Bvb\Grid
      */
     public function addMassActions(array $options, $fields = null)
     {
 
         foreach ($options as $value) {
             if (!isset($value['url']) || !isset($value['caption'])) {
-                throw new Bvb_Grid_Exception('Options url and caption are required for each action');
+                throw new Exception('Options url and caption are required for each action');
             }
         }
 
@@ -175,7 +179,7 @@ class Bvb_Grid_Mass_Actions {
      * Defines which fields should be posted.
      *
      * @param mixed $fields Fields to be used as post ids
-     * @return Bvb_Grid
+     * @return Bvb\Grid
      */
     public function setFields($fields)
     {
@@ -187,7 +191,7 @@ class Bvb_Grid_Mass_Actions {
     /**
      * Set's the pre-selected values
      * @param array $values
-     * @return \Bvb_Grid_Mass_Actions
+     * @return Bvb\Grid\Mass\Actions
      */
     public function setPreSelectedValues(array $values = array())
     {
@@ -205,13 +209,13 @@ class Bvb_Grid_Mass_Actions {
      *
      * @param string $separator Separator to be used
      *
-     * @return Bvb_Grid
+     * @return Bvb\Grid
      */
     public function setMultipleFieldsSeparator($separator)
     {
 
         if (0 == strlen($separator)) {
-            throw new Bvb_Grid_Exception('Please provide a Mass Actions separator');
+            throw new Exception('Please provide a Mass Actions separator');
         }
 
         $this->_multipleFieldsSeparator = (string) $separator;
@@ -234,13 +238,13 @@ class Bvb_Grid_Mass_Actions {
      *
      * @param string $separator Separator to be used in post fields
      *
-     * @return Bvb_Grid
+     * @return Bvb\Grid
      */
     public function setMassActionsSeparator($separator)
     {
 
         if (0 == strlen($separator)) {
-            throw new Bvb_Grid_Exception('Please provide a Mass Actions separator');
+            throw new Exception('Please provide a Mass Actions separator');
         }
 
         $this->_recordSeparator = (string) $separator;
@@ -304,7 +308,7 @@ class Bvb_Grid_Mass_Actions {
      *
      * @param array $attributes
      *
-     * @return Bvb_Grid_Mass_Actions
+     * @return Bvb\Grid\Mass\Actions
      */
     public function setSubmitAttributes(array $attributes)
     {

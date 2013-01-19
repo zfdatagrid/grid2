@@ -10,15 +10,18 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package   Bvb_Grid
+ * @package   Bvb\Grid
  * @author    Bento Vilas Boas <geral@petala-azul.com>
  * @copyright 2010 ZFDatagrid
  * @license   http://www.petala-azul.com/bsd.txt   New BSD License
  * @version   $Id$
  * @link      http://zfdatagrid.com
  */
+namespace Bvb\Grid\Formatter;
 
-class Bvb_Grid_Formatter_Array implements Bvb_Grid_Formatter_FormatterInterface
+use Bvb\Grid\Translator;
+
+class PhpArray implements FormatterInterface
 {
 
     /**
@@ -84,7 +87,7 @@ class Bvb_Grid_Formatter_Array implements Bvb_Grid_Formatter_FormatterInterface
      */
     public function __ ($message)
     {
-        return Bvb_Grid_Translator::getInstance()->__($message);
+        return Translator::getInstance()->__($message);
     }
 
 

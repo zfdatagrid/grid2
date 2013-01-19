@@ -11,14 +11,18 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package    Bvb_Grid
+ * @package    Bvb\Grid
  * @copyright  Copyright (c) Bento Vilas Boas (http://www.petala-azul.com)
  * @license    http://www.petala-azul.com/bsd.txt   New BSD License
  * @version    $Id: Ofc.php 1813 2011-07-16 03:15:32Z bento.vilas.boas@gmail.com $
  * @author     Bento Vilas Boas <geral@petala-azul.com >
  */
+namespace Bvb\Grid\Deploy;
 
-class Bvb_Grid_Deploy_Ofc extends Bvb_Grid implements Bvb_Grid_Deploy_DeployInterface
+use Bvb\Grid;
+use Bvb\Grid\Exception;
+
+class Ofc extends Grid implements DeployInterface
 {
 
     public static $url;
@@ -145,7 +149,7 @@ class Bvb_Grid_Deploy_Ofc extends Bvb_Grid implements Bvb_Grid_Deploy_DeployInte
         $this->checkExportRights();
 
         if ( $this->_filesLocation === null ) {
-            throw new Bvb_Grid_Exception($this->__("Please set Javascript and Flash file locations using SetFilesLocation()"));
+            throw new Exception($this->__("Please set Javascript and Flash file locations using SetFilesLocation()"));
         }
 
         $grid = array();

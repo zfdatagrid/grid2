@@ -1,9 +1,12 @@
 <?php
+namespace Bvb\Grid\Source\Doctrine2;
+
+use Bvb\Grid\Exception as ExceptionGrid;
 /**
  *
  *
- * @package   Bvb_Grid
+ * @package   Bvb\Grid
  * @author Martin Parseigla <martin.parsiegla@speanet.info>
  */
-class Bvb_Grid_Source_Doctrine2_Exception extends Bvb_Grid_Exception
+class Exception extends ExceptionGrid
 {}

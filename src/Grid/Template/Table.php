@@ -11,13 +11,17 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package    Bvb_Grid
+ * @package    Bvb\Grid
  * @copyright  Copyright (c)  (http://www.petala-azul.com)
  * @license    http://www.petala-azul.com/bsd.txt   New BSD License
  * @version    $Id: Table.php 1894 2012-03-06 19:28:02Z ivomonteiro@gmail.com $
  * @author     Bento Vilas Boas <geral@petala-azul.com >
  */
-class Bvb_Grid_Template_Table {
+namespace Bvb\Grid\Template;
+
+use Bvb\Grid\Translator;
+
+class Table {
 
     public $hasExtraRow = 0;
     public $hasFilters = 1;
@@ -259,7 +263,7 @@ class Bvb_Grid_Template_Table {
     {
         $exp = '';
         foreach ($exportDeploy as $format => $export) {
-            $caption = sprintf(Bvb_Grid_Translator::getInstance()->__('Export to %s format'), $export['caption']);
+            $caption = sprintf(Translator::getInstance()->__('Export to %s format'), $export['caption']);
 
 
             $export['newWindow'] = isset($export['newWindow']) ? $export['newWindow'] : true;

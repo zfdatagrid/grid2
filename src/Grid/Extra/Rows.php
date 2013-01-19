@@ -10,14 +10,16 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package   Bvb_Grid
+ * @package   Bvb\Grid
  * @author    Bento Vilas Boas <geral@petala-azul.com>
  * @copyright 2010 ZFDatagrid
  * @license   http://www.petala-azul.com/bsd.txt   New BSD License
  * @version   $Id$
  * @link      http://zfdatagrid.com
  */
-class Bvb_Grid_Extra_Rows {
+namespace Bvb\Grid\Extra;
+
+class Rows {
 
     /**
      * Rows to be added

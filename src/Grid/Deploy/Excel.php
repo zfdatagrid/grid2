@@ -10,15 +10,19 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package   Bvb_Grid
+ * @package   Bvb\Grid
  * @author    Bento Vilas Boas <geral@petala-azul.com>
  * @copyright 2010 ZFDatagrid
  * @license   http://www.petala-azul.com/bsd.txt   New BSD License
  * @version   $Id: Excel.php 1813 2011-07-16 03:15:32Z bento.vilas.boas@gmail.com $
  * @link      http://zfdatagrid.com
  */
+namespace Bvb\Grid\Deploy;
 
-class Bvb_Grid_Deploy_Excel extends Bvb_Grid implements Bvb_Grid_Deploy_DeployInterface
+use Bvb\Grid;
+use Bvb\Grid\Exception;
+
+class Excel extends Grid implements DeployInterface
 {
 
 
@@ -63,7 +67,7 @@ class Bvb_Grid_Deploy_Excel extends Bvb_Grid implements Bvb_Grid_Deploy_DeployIn
         $sql = parent::_buildSqlExp();
 
         if ( is_array($wsData) && count($wsData) > 65569 ) {
-            throw new Bvb_Grid_Exception('Maximum number of records allowed is 65569');
+            throw new Exception('Maximum number of records allowed is 65569');
         }
 
         $xml = '<?xml version="1.0"?><?mso-application progid="Excel.Sheet"?>
@@ -134,11 +138,11 @@ class Bvb_Grid_Deploy_Excel extends Bvb_Grid implements Bvb_Grid_Deploy_DeployIn
         $this->_deploy['dir'] = rtrim($this->_deploy['dir'], '/') . '/';
 
         if ( ! is_dir($this->_deploy['dir']) && $this->_deploy['save'] == 1 ) {
-            throw new Bvb_Grid_Exception($this->_deploy['dir'] . ' is not a dir');
+            throw new Exception($this->_deploy['dir'] . ' is not a dir');
         }
 
         if ( ! is_writable($this->_deploy['dir']) && $this->_deploy['save'] == 1 ) {
-            throw new Bvb_Grid_Exception($this->_deploy['dir'] . ' is not writable');
+            throw new Exception($this->_deploy['dir'] . ' is not writable');
         }
 
         if ( $this->_deploy['save'] == 1 ) {

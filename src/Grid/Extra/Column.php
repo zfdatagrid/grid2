@@ -10,14 +10,16 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package   Bvb_Grid
+ * @package   Bvb\Grid
  * @author    Bento Vilas Boas <geral@petala-azul.com>
  * @copyright 2010 ZFDatagrid
  * @license   http://www.petala-azul.com/bsd.txt   New BSD License
  * @version   $Id: Column.php 1808 2011-07-15 03:14:33Z bento.vilas.boas@gmail.com $
  * @link      http://zfdatagrid.com
  */
-class Bvb_Grid_Extra_Column {
+namespace Bvb\Grid\Extra;
+
+class Column {
 
     /**
      * Columns to be added
@@ -81,7 +83,7 @@ class Bvb_Grid_Extra_Column {
      * @param string     $name
      * @param string|int $value
      * 
-     * @return Bvb_Grid_Extra_Column
+     * @return Bvb\Grid\Extra\Column
      */
     public function setOption($name, $value)
     {

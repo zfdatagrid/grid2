@@ -11,14 +11,14 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package    Bvb_Grid
+ * @package    Bvb\Grid
  * @copyright  Copyright (c)  (http://www.petala-azul.com)
  * @license    http://www.petala-azul.com/bsd.txt   New BSD License
  * @version    $Id: Number.php 1732 2011-05-14 22:26:41Z bento.vilas.boas@gmail.com $
  * @author     Bento Vilas Boas <geral@petala-azul.com >
  */
 
-class Bvb_Grid_Filters_Render_Dojo_Number extends Bvb_Grid_Filters_Render_RenderAbstract
+class Number extends RenderAbstract
 {
 
 

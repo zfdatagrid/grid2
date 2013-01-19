@@ -11,13 +11,18 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package    Bvb_Grid
+ * @package    Bvb\Grid
  * @copyright  Copyright (c)  (http://www.petala-azul.com)
  * @license    http://www.petala-azul.com/bsd.txt   New BSD License
  * @version    $Id: Pdf.php 1921 2012-05-06 17:55:08Z bento@licentia.pt $
  * @author     Bento Vilas Boas <geral@petala-azul.com >
  */
-class Bvb_Grid_Deploy_Pdf extends Bvb_Grid implements Bvb_Grid_Deploy_DeployInterface {
+namespace Bvb\Grid\Deploy;
+
+use Bvb\Grid;
+use Bvb\Grid\Exception;
+
+class Pdf extends Grid implements DeployInterface {
 
     protected $_page;
     protected $_width;
@@ -272,11 +277,11 @@ class Bvb_Grid_Deploy_Pdf extends Bvb_Grid implements Bvb_Grid_Deploy_DeployInte
         $this->_deploy['dir'] = rtrim($this->_deploy['dir'], '/') . '/';
 
         if (!isset($this->_deploy['dir']) || !is_dir($this->_deploy['dir'])) {
-            throw new Bvb_Grid_Exception($this->_deploy['dir'] . ' is not a dir');
+            throw new Exception($this->_deploy['dir'] . ' is not a dir');
         }
 
         if (!is_writable($this->_deploy['dir'])) {
-            throw new Bvb_Grid_Exception($this->_deploy['dir'] . ' is not writable');
+            throw new Exception($this->_deploy['dir'] . ' is not writable');
         }
 
         $this->_la = 0;

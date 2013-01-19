@@ -11,14 +11,15 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package    Bvb_Grid
+ * @package    Bvb\Grid
  * @copyright  Copyright (c)  (http://www.petala-azul.com)
  * @license    http://www.petala-azul.com/bsd.txt   New BSD License
  * @version    $Id: RenderAbstract.php 1186 2010-05-21 18:16:48Z bento.vilas.boas@gmail.com $
  * @author     Bento Vilas Boas <geral@petala-azul.com >
  */
+namespace Bvb\Grid\Filters\Render;
 
-interface Bvb_Grid_Filters_Render_RenderInterface
+interface RenderInterface
 {
 
 
@@ -105,7 +106,7 @@ interface Bvb_Grid_Filters_Render_RenderInterface
      *
      * @param string $name
      *
-     * @return Bvb_Grid_Filters_Render_RenderAbstract
+     * @return Bvb\Grid\Filters\Render\RenderAbstract
      */
     public function removeAttribute ($name);
 
@@ -115,7 +116,7 @@ interface Bvb_Grid_Filters_Render_RenderInterface
      *
      * @param array $options
      *
-     * @return Bvb_Grid_Filters_Render_RenderAbstract
+     * @return Bvb\Grid\Filters\Render\RenderAbstract
      */
     public function setValues (array $options);
 
@@ -169,7 +170,7 @@ interface Bvb_Grid_Filters_Render_RenderInterface
      * @param string $value
      * @param string $part
      *
-     * @return Bvb_Grid_Filters_Render_RenderAbstract
+     * @return Bvb\Grid\Filters\Render\RenderAbstract
      */
     public function normalize ($value, $part = '');
 
@@ -179,7 +180,7 @@ interface Bvb_Grid_Filters_Render_RenderInterface
      *
      * @param object $select
      *
-     * @return Bvb_Grid_Filters_Render_RenderAbstract
+     * @return Bvb\Grid\Filters\Render\RenderAbstract
      */
     public function setSelect ($select);
 
@@ -187,7 +188,7 @@ interface Bvb_Grid_Filters_Render_RenderInterface
     /**
      * Returns the current Data Source Instance
      *
-     * @return Bvb_Grid_Source_Interface
+     * @return Bvb\Grid\Source\Interface
      */
     public function getSelect ();
 
@@ -206,7 +207,7 @@ interface Bvb_Grid_Filters_Render_RenderInterface
      *
      * @param array $filter
      *
-     * @return Bvb_Grid_Filters_Render_RenderAbstract
+     * @return Bvb\Grid\Filters\Render\RenderAbstract
      */
     public function buildQuery (array $filter);
 

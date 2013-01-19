@@ -10,15 +10,16 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package   Bvb_Grid
+ * @package   Bvb\Grid
  * @author    Bento Vilas Boas <geral@petala-azul.com>
  * @copyright 2010 unknown (web result)
  * @license   http://www.petala-azul.com/bsd.txt   New BSD License
  * @version   $Id: File.php 1448 2010-09-11 14:43:43Z bento.vilas.boas@gmail.com $
  * @link      http://zfdatagrid.com
  */
+namespace Bvb\Grid\Deploy\Helper;
 
-class Bvb_Grid_Deploy_Helper_File
+class File
 {
 
 

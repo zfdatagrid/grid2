@@ -11,14 +11,17 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package    Bvb_Grid
+ * @package    Bvb\Grid
  * @copyright  Copyright (c)  (http://www.petala-azul.com)
  * @license    http://www.petala-azul.com/bsd.txt   New BSD License
  * @version    $Id: Csv.php 1838 2011-07-18 03:19:30Z bento.vilas.boas@gmail.com $
  * @author     Bento Vilas Boas <geral@petala-azul.com >
  */
+namespace Bvb\Grid\Source;
 
-class Bvb_Grid_Source_Csv extends Bvb_Grid_Source_Array
+use Bvb\Grid\Exception;
+
+class Csv extends PhpArray
 {
     /**
      * Data source
@@ -46,11 +49,11 @@ class Bvb_Grid_Source_Csv extends Bvb_Grid_Source_Array
         $final = array();
 
         if (!is_file($dataSource)) {
-            throw new Bvb_Grid_Exception('Could not find file: ' . $dataSource);
+            throw new Exception('Could not find file: ' . $dataSource);
         }
 
         if (! is_readable($dataSource)) {
-            throw new Bvb_Grid_Exception('Could not read file: ' . $dataSource);
+            throw new Exception('Could not read file: ' . $dataSource);
         }
 
         $row = 0;

@@ -10,14 +10,16 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package   Bvb_Grid
+ * @package   Bvb\Grid
  * @author    Bento Vilas Boas <geral@petala-azul.com>
  * @copyright 2010 ZFDatagrid
  * @license   http://www.petala-azul.com/bsd.txt   New BSD License
  * @version   $Id: Image.php 1878 2011-11-24 02:36:38Z bento.vilas.boas@gmail.com $
  * @link      http://zfdatagrid.com
  */
-class Bvb_Grid_Formatter_Image implements Bvb_Grid_Formatter_FormatterInterface {
+namespace Bvb\Grid\Formatter;
+
+class Image implements FormatterInterface {
 
     protected $_options;
     protected $_urlPrefix = '';

@@ -10,15 +10,16 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package   Bvb_Grid
+ * @package   Bvb\Grid
  * @author    Bento Vilas Boas <geral@petala-azul.com>
  * @copyright 2010 ZFDatagrid
  * @license   http://www.petala-azul.com/bsd.txt   New BSD License
  * @version   $Id: Filters.php 1655 2011-03-21 00:00:05Z bento.vilas.boas@gmail.com $
  * @link      http://zfdatagrid.com
  */
+namespace Bvb\Grid;
 
-class Bvb_Grid_Filters
+class Filters
 {
 
     protected $_filters = array();
@@ -30,7 +31,7 @@ class Bvb_Grid_Filters
      * @param string $field   The field to be added
      * @param array  $options Options for the field
      *
-     * @return Bvb_Grid_Filters
+     * @return Bvb\Grid\Filters
      */
     public function addFilter ($field, array $options = array())
     {

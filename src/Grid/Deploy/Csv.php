@@ -10,15 +10,18 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package   Bvb_Grid
+ * @package   Bvb\Grid
  * @author    Bento Vilas Boas <geral@petala-azul.com>
  * @copyright 2010 ZFDatagrid
  * @license   http://www.petala-azul.com/bsd.txt   New BSD License
  * @version   $Id: Csv.php 1876 2011-11-10 16:50:17Z martin.minka@gmail.com $
  * @link      http://zfdatagrid.com
  */
+namespace Bvb\Grid\Deploy;
 
-class Bvb_Grid_Deploy_Csv extends Bvb_Grid implements Bvb_Grid_Deploy_DeployInterface
+use Bvb\Grid;
+
+class Csv extends Grid implements DeployInterface
 {
     /**
      * Storing file
@@ -88,7 +91,7 @@ class Bvb_Grid_Deploy_Csv extends Bvb_Grid implements Bvb_Grid_Deploy_DeployInte
      *
      * @param int|boolean $number will not accept any other changes made by setRecordsPerPage if not FALSE
      *
-     * @return Bvb_Grid
+     * @return Bvb\Grid
      */
     public function setForceRecordsPerPage($number)
     {
@@ -106,7 +109,7 @@ class Bvb_Grid_Deploy_Csv extends Bvb_Grid implements Bvb_Grid_Deploy_DeployInte
      *
      * @param int $number Records to show
      *
-     * @return Bvb_Grid
+     * @return Bvb\Grid
      */
     public function setRecordsPerPage($number = 15)
     {
@@ -295,7 +298,7 @@ class Bvb_Grid_Deploy_Csv extends Bvb_Grid implements Bvb_Grid_Deploy_DeployInte
     /**
      * Return file if download requested without the need to continue up to deploy() method
      *
-     * @return Bvb_Grid_Deploy_Csv
+     * @return Bvb\Grid\Deploy\Csv
      */
     public function setAjax()
     {

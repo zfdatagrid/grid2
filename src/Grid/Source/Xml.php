@@ -10,15 +10,17 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package   Bvb_Grid
+ * @package   Bvb\Grid
  * @author    Bento Vilas Boas <geral@petala-azul.com>
  * @copyright 2010 ZFDatagrid
  * @license   http://www.petala-azul.com/bsd.txt   New BSD License
  * @version   $Id: Xml.php 1838 2011-07-18 03:19:30Z bento.vilas.boas@gmail.com $
  * @link      http://zfdatagrid.com
  */
-class Bvb_Grid_Source_Xml extends Bvb_Grid_Source_Array {
+namespace Bvb\Grid\Source;
 
+class Xml extends PhpArray {
+    
     public function __construct($url, $loop, $columns = null, $cache = null)
     {
 

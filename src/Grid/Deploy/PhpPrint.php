@@ -11,14 +11,19 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package    Bvb_Grid
+ * @package    Bvb\Grid
  * @copyright  Copyright (c)  (http://www.petala-azul.com)
  * @license    http://www.petala-azul.com/bsd.txt   New BSD License
  * @version    $Id: Print.php 1813 2011-07-16 03:15:32Z bento.vilas.boas@gmail.com $
  * @author     Bento Vilas Boas <geral@petala-azul.com >
  */
+namespace Bvb\Grid\Deploy;
 
-class Bvb_Grid_Deploy_Print extends Bvb_Grid implements Bvb_Grid_Deploy_DeployInterface
+use Bvb\Grid;
+use Bvb\Grid\Exception;
+use Bvb\Grid\Template\PhpPrint as PrintTemplate;
+
+class PhpPrint extends Grid implements DeployInterface
 {
     public $templateInfo;
 
@@ -37,7 +42,7 @@ class Bvb_Grid_Deploy_Print extends Bvb_Grid implements Bvb_Grid_Deploy_DeployIn
 
         parent::deploy();
 
-        if ( ! $this->_temp['print'] instanceof Bvb_Grid_Template_Print ) {
+        if ( ! $this->_temp['print'] instanceof PrintTemplate ) {
             $this->setTemplate('print', 'print');
         }
 
@@ -151,11 +156,11 @@ class Bvb_Grid_Deploy_Print extends Bvb_Grid implements Bvb_Grid_Deploy_DeployIn
         $this->_deploy['dir'] = rtrim($this->_deploy['dir'], '/') . '/';
 
         if ( ! is_dir($this->_deploy['dir']) ) {
-            throw new Bvb_Grid_Exception($this->_deploy['dir'] . ' is not a dir');
+            throw new Exception($this->_deploy['dir'] . ' is not a dir');
         }
 
         if ( ! is_writable($this->_deploy['dir']) ) {
-            throw new Bvb_Grid_Exception($this->_deploy['dir'] . ' is not writable');
+            throw new Exception($this->_deploy['dir'] . ' is not writable');
         }
 
         file_put_contents($this->_deploy['dir'] . $this->_deploy['name'] . ".html", $print);

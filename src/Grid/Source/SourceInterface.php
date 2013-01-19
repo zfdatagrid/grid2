@@ -10,15 +10,16 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package   Bvb_Grid
+ * @package   Bvb\Grid
  * @author    Bento Vilas Boas <geral@petala-azul.com>
  * @copyright 2010 ZFDatagrid
  * @license   http://www.petala-azul.com/bsd.txt   New BSD License
  * @version   $Id: SourceInterface.php 1893 2012-03-06 16:13:47Z ivomonteiro@gmail.com $
  * @link      http://zfdatagrid.com
  */
+namespace Bvb\Grid\Source;
 
-interface Bvb_Grid_Source_SourceInterface
+interface SourceInterface
 {
 
 

@@ -11,12 +11,15 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package   Bvb_Grid
+ * @package   Bvb\Grid
  * @copyright Copyright (c) XTmotion Limited (http://www.xtmotion.co.uk/)
  * @license   http://www.petala-azul.com/bsd.txt   New BSD License
  * @version   $Id: JqGrid.php 1848 2011-08-02 07:58:57Z martin.minka@gmail.com $
  * @author    k2s (Martin Minka) <martin.minka@gmail.com>
  */
+namespace Bvb\Grid\Deploy;
+
+use Bvb\Grid;
 
 /** Zend_Json */
 require_once 'Zend/Json.php';
@@ -27,13 +30,13 @@ require_once 'Zend/Controller/Front.php';
 /**
  * Deploy class to render data with jqGrid library
  *
- * @package   Bvb_Grid
+ * @package   Bvb\Grid
  * @author    k2s (Martin Minka) <martin.minka@gmail.com>
  * @copyright Copyright (c) 2010-2011 XTmotion Limited (http://www.xtmotion.co.uk/)
  * @license   http://www.petala-azul.com/bsd.txt   New BSD License
  * @version   $Id: JqGrid.php 1848 2011-08-02 07:58:57Z martin.minka@gmail.com $
  */
-class Bvb_Grid_Deploy_JqGrid extends Bvb_Grid implements Bvb_Grid_Deploy_DeployInterface
+class JqGrid extends Grid implements DeployInterface
 {
     /**
      * URL path to place where JqGrid library resides
@@ -119,7 +122,7 @@ class Bvb_Grid_Deploy_JqGrid extends Bvb_Grid implements Bvb_Grid_Deploy_DeployI
     private $_jqgParams = array();
 
     /**
-     * Bvb_Grid_Deploy_JqGrid own options to apply
+     * Bvb\Grid\Deploy\JqGrid own options to apply
      *
      * @var array
      */
@@ -165,7 +168,7 @@ class Bvb_Grid_Deploy_JqGrid extends Bvb_Grid implements Bvb_Grid_Deploy_DeployI
 
         parent::__construct($options);
 
-        // TODO fix for property with same name in Bvb_Grid
+        // TODO fix for property with same name in Bvb\Grid
         $this->_view = null;
 
         // prepare request parameters sent by jqGrid
@@ -216,7 +219,7 @@ class Bvb_Grid_Deploy_JqGrid extends Bvb_Grid implements Bvb_Grid_Deploy_DeployI
      */
     public function ajax($id='')
     {
-        trigger_error("Bvb_Grid_Deploy_JqGrid::ajax() is deprecated, use setAjax() instead. Function will be removed in later versions.", E_USER_DEPRECATED);
+        trigger_error("Bvb\Grid\Deploy\JqGrid::ajax() is deprecated, use setAjax() instead. Function will be removed in later versions.", E_USER_DEPRECATED);
         $this->setAjax($id);
     }
 
@@ -225,7 +228,7 @@ class Bvb_Grid_Deploy_JqGrid extends Bvb_Grid implements Bvb_Grid_Deploy_DeployI
      *
      * @param array $options set JqGrid options (@see http://www.trirand.com/jqgridwiki/doku.php?id=wiki:options)
      *
-     * @return Bvb_Grid_Deploy_JqGrid
+     * @return Bvb\Grid\Deploy\JqGrid
      */
     public function setJqgParams(array $options)
     {
@@ -251,7 +254,7 @@ class Bvb_Grid_Deploy_JqGrid extends Bvb_Grid implements Bvb_Grid_Deploy_DeployI
      * @param string $var   name of property to set with value
      * @param mixed  $value value
      *
-     * @return Bvb_Grid_Deploy_JqGrid
+     * @return Bvb\Grid\Deploy\JqGrid
      */
     public function setJqgParam($var, $value)
     {
@@ -273,11 +276,11 @@ class Bvb_Grid_Deploy_JqGrid extends Bvb_Grid implements Bvb_Grid_Deploy_DeployI
     }
 
     /**
-     * Set Bvb_Grid_Deploy_JqGrid own options (merging with old options)
+     * Set Bvb\Grid\Deploy\JqGrid own options (merging with old options)
      *
-     * @param array $options set Bvb_Grid_Deploy_JqGrid
+     * @param array $options set Bvb\Grid\Deploy\JqGrid
      *
-     * @return Bvb_Grid_Deploy_JqGrid
+     * @return Bvb\Grid\Deploy\JqGrid
      */
     public function setBvbParams(array $options)
     {
@@ -298,12 +301,12 @@ class Bvb_Grid_Deploy_JqGrid extends Bvb_Grid implements Bvb_Grid_Deploy_DeployI
     }
 
     /**
-     * Set value to one parameter from Bvb_Grid_Deploy_JqGrid domain
+     * Set value to one parameter from Bvb\Grid\Deploy\JqGrid domain
      *
      * @param string $var   name of property to set with value
      * @param mixed  $value value
      *
-     * @return Bvb_Grid_Deploy_JqGrid
+     * @return Bvb\Grid\Deploy\JqGrid
      */
     public function setBvbParam($var, $value)
     {
@@ -327,7 +330,7 @@ class Bvb_Grid_Deploy_JqGrid extends Bvb_Grid implements Bvb_Grid_Deploy_DeployI
 
 
     /**
-     * Return value of parameter from Bvb_Grid_Deploy_JqGrid domain
+     * Return value of parameter from Bvb\Grid\Deploy\JqGrid domain
      *
      * @param string $var     variable name
      * @param mixed  $default value to return if option is not set
@@ -348,7 +351,7 @@ class Bvb_Grid_Deploy_JqGrid extends Bvb_Grid implements Bvb_Grid_Deploy_DeployI
      *
      * @param string $javaScript javascript will be included into funcion
      *
-     * @return Bvb_Grid_Deploy_JqGrid
+     * @return Bvb\Grid\Deploy\JqGrid
      */
     public function bvbSetOnInit($javaScript)
     {
@@ -359,11 +362,11 @@ class Bvb_Grid_Deploy_JqGrid extends Bvb_Grid implements Bvb_Grid_Deploy_DeployI
     /**
      * Removes all javascript code added by calls to setJqgOnInit()
      *
-     * @return Bvb_Grid_Deploy_JqGrid
+     * @return Bvb\Grid\Deploy\JqGrid
      */
     public function bvbClearOnInit()
     {
-        // TODO __call function in Bvb_Grid should ignore such call
+        // TODO __call function in Bvb\Grid should ignore such call
         $this->_jqgOnInit = array();
         return $this;
     }
@@ -447,7 +450,7 @@ JS;
      *
      * Use __toString() function to receive the result and place it in view where you want to display the grid.
      *
-     * @return Bvb_Grid_Deploy_JqGrid
+     * @return Bvb\Grid\Deploy\JqGrid
      */
     public function deploy()
     {
@@ -632,12 +635,12 @@ HTML;
      *
      * Options are set on grid level by:
      * 1. javascript options passed to jqGrid (?)
-     * 2. special Bvb_Grid_Deploy_JqGrid options (jqg array)
+     * 2. special Bvb\Grid\Deploy\JqGrid options (jqg array)
      * 3. standard Bvb settings
      *
      * Options are set on column level by:
      * 1. javascript options passed to columns (?)
-     * 2. special Bvb_Grid_Deploy_JqGrid options (jqg array)
+     * 2. special Bvb\Grid\Deploy\JqGrid options (jqg array)
      * 3. standard Bvb settings
      * 4. formaters (?)
      *
@@ -657,7 +660,7 @@ HTML;
             $this->jqgGetIdPager()
         );
 
-        // override with options defined on Bvb_Grid level
+        // override with options defined on Bvb\Grid level
         $this->_jqgParams['url'] = isset($this->_jqgParams['url']) ? (empty($this->_jqgParams['url']) ? $url : $this->_jqgParams['url']) : $url;
         $this->_jqgParams['pager'] = new Zend_Json_Expr(sprintf("'#%s'", $this->jqgGetIdPager()));
         $this->_jqgParams['rowNum'] = isset($this->_jqgParams['rowNum'])
@@ -829,7 +832,7 @@ JS;
      *
      * ZendX_Jquery is used as default, but this could be overriden.
      *
-     * @return Bvb_Grid_Deploy_JqGrid
+     * @return Bvb\Grid\Deploy\JqGrid
      */
     public function jqInit()
     {
@@ -881,7 +884,7 @@ JS;
      *
      * @param string $js javascipt code to add
      *
-     * @return Bvb_Grid_Deploy_JqGrid
+     * @return Bvb\Grid\Deploy\JqGrid
      */
     public function jqAddOnLoad($js)
     {
@@ -908,7 +911,7 @@ JS;
      *
      * @param array $button options for JqGrid custom button
      *
-     * @return Bvb_Grid_Deploy_JqGrid
+     * @return Bvb\Grid\Deploy\JqGrid
      */
     public function jqgAddNavButton($button)
     {
@@ -1045,7 +1048,7 @@ JS;
         return $cmd;
     }
 
-    // Following functions could go to Bvb_Grid
+    // Following functions could go to Bvb\Grid
     /**
      * Contains result of deploy() function.
      *
@@ -1117,7 +1120,7 @@ JS;
      *
      * @param string $id text to apply as part of jqGrid HTML element IDs
      *
-     * @return Bvb_Grid_Deploy_JqGrid
+     * @return Bvb\Grid\Deploy\JqGrid
      */
     public function setId($id)
     {
@@ -1130,7 +1133,7 @@ JS;
      *
      * @param string $id name of the column
      *
-     * @return Bvb_Grid_Deploy_JqGrid
+     * @return Bvb\Grid\Deploy\JqGrid
      */
     public function bvbSetId($id)
     {
@@ -1150,7 +1153,7 @@ JS;
     /**
      * Create Zend_Log object used to debug Bvb classes
      *
-     * @return Bvb_Grid_Deploy_JqGrid
+     * @return Bvb\Grid\Deploy\JqGrid
      */
     protected function initLogger()
     {
@@ -1171,7 +1174,7 @@ JS;
      * @param string $message  message to log
      * @param int    $priority one of Zend_Log constances, Zend_Log::DEBUG is default
      *
-     * @return Bvb_Grid_Deploy_JqGrid
+     * @return Bvb\Grid\Deploy\JqGrid
      */
     protected function log($message, $priority = 7)
     {
@@ -1271,7 +1274,7 @@ JS;
      */
     public static function formatterActionBar($actions)
     {
-        // TODO this should be Bvb_Formatter class and it should not be static there
+        // TODO this should be Bvb\Formatter class and it should not be static there
         //$actionClasses = $this->getActionClasses();
         $actionClasses = self::$defaultActionClasses;
         $html = "";
@@ -1422,7 +1425,7 @@ class JqGridCommand
     /**
      * Constructor
      *
-     * @param Bvb_Grid_Deploy_JqGrid $grid grid object
+     * @param Bvb\Grid\Deploy\JqGrid $grid grid object
      */
     public function __construct($grid)
     {

@@ -10,14 +10,16 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package   Bvb_Grid
+ * @package   Bvb\Grid
  * @author    Bento Vilas Boas <geral@petala-azul.com>
  * @copyright 2010 ZFDatagrid
  * @license   http://www.petala-azul.com/bsd.txt   New BSD License
  * @version   $Id: Form.php 1806 2011-07-15 01:59:14Z bento.vilas.boas@gmail.com $
  * @link      http://zfdatagrid.com
  */
-class Bvb_Grid_Form
+namespace Bvb\Grid;
+
+class Form
 {
 
     /**
@@ -266,7 +268,7 @@ class Bvb_Grid_Form
      * @param string $name The method name or class proporty
      * @param mixed  $args Arguments to be passed
      *
-     * @return Bvb_Grid_Form
+     * @return Bvb\Grid\Form
      */
     public function __call($name, $args)
     {
@@ -687,7 +689,7 @@ class Bvb_Grid_Form
     /**
      * Adds one more field to the set not allowed to be managed
      * @param string  $field
-     * @return Bvb_Grid_Form
+     * @return Bvb\Grid_Form
      */
     public function addAllowedField($field)
     {
@@ -698,7 +700,7 @@ class Bvb_Grid_Form
     /**
      * Adds another set of fields not allowed to be managed
      * @param array $fields
-     * @return Bvb_Grid_Form
+     * @return Bvb\Grid\Form
      */
     public function addAllowedFields(array $fields)
     {
@@ -709,7 +711,7 @@ class Bvb_Grid_Form
     /**
      * Adds one more field to the set not allowed to be managed
      * @param string  $field
-     * @return Bvb_Grid_Form
+     * @return Bvb\Grid\Form
      */
     public function addDisallowedField($field)
     {
@@ -720,7 +722,7 @@ class Bvb_Grid_Form
     /**
      * Adds another set of fields not allowed to be managed
      * @param array $fields
-     * @return Bvb_Grid_Form
+     * @return Bvb\Grid\Form
      */
     public function addDisallowedFields(array $fields)
     {
@@ -834,7 +836,7 @@ class Bvb_Grid_Form
      * If we should use a table thead with some text to describe form action
      *
      * @param string $label
-     * @return Bvb_Grid_Form
+     * @return Bvb\Grid\Form
      */
     public function setFormTitle($label)
     {
@@ -865,7 +867,7 @@ class Bvb_Grid_Form
     /**
      * Defines a new label for the add record button
      * @param string $label
-     * @return Bvb_Grid_Form
+     * @return Bvb\Grid\Form
      */
     public function setAddButtonLabel($label)
     {
@@ -878,7 +880,7 @@ class Bvb_Grid_Form
      * definef in user supplied form
      *
      * @param bool $use
-     * @return Bvb_Grid_Form
+     * @return Bvb\Grid\Form
      */
     public function setUsePreDefinedFormElements($value)
     {

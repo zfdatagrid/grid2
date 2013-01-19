@@ -10,15 +10,19 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package   Bvb_Grid
+ * @package   Bvb\Grid
  * @author    Bento Vilas Boas <geral@petala-azul.com>
  * @copyright 2010 ZFDatagrid
  * @license   http://www.petala-azul.com/bsd.txt   New BSD License
  * @version   $Id: Date.php 1507 2010-12-10 00:00:44Z bento.vilas.boas@gmail.com $
  * @link      http://zfdatagrid.com
  */
+namespace Bvb\Grid\Formatter;
 
-class Bvb_Grid_Formatter_Date implements Bvb_Grid_Formatter_FormatterInterface
+use Bvb\Grid\Exception;
+use Bvb\Grid\Translator;
+
+class Date implements FormatterInterface
 {
 
     /**
@@ -64,7 +68,7 @@ class Bvb_Grid_Formatter_Date implements Bvb_Grid_Formatter_FormatterInterface
                         $this->type = $v;
                         break;
                     default:
-                        throw new Bvb_Grid_Exception(Bvb_Grid_Translator::getInstance()->__("Unknown option '$k'."));
+                        throw new Exception(Translator::getInstance()->__("Unknown option '$k'."));
                 }
             }
         } elseif ( Zend_Registry::isRegistered('Zend_Locale') ) {

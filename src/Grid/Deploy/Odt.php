@@ -11,14 +11,19 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package    Bvb_Grid
+ * @package    Bvb\Grid
  * @copyright  Copyright (c)  (http://www.petala-azul.com)
  * @license    http://www.petala-azul.com/bsd.txt   New BSD License
  * @version    $Id: Odt.php 1882 2012-02-23 10:27:06Z ivomonteiro@gmail.com $
  * @author     Bento Vilas Boas <geral@petala-azul.com >
  */
+namespace Bvb\Grid\Deploy;
 
-class Bvb_Grid_Deploy_Odt extends Bvb_Grid implements Bvb_Grid_Deploy_DeployInterface
+use Bvb\Grid;
+use Bvb\Grid\Exception;
+use Bvb\Grid\Template\Odt as OdtTemplate;
+
+class Odt extends Grid implements DeployInterface
 {
     public $templateInfo;
 
@@ -30,7 +35,7 @@ class Bvb_Grid_Deploy_Odt extends Bvb_Grid implements Bvb_Grid_Deploy_DeployInte
     {
         if(!class_exists('ZipArchive'))
         {
-            throw new Bvb_Grid_Exception('Class ZipArchive not available. Check www.php.net/ZipArchive for more information');
+            throw new Exception('Class ZipArchive not available. Check www.php.net/ZipArchive for more information');
         }
 
         $this->_setRemoveHiddenFields(true);
@@ -46,7 +51,7 @@ class Bvb_Grid_Deploy_Odt extends Bvb_Grid implements Bvb_Grid_Deploy_DeployInte
 
         parent::deploy();
 
-        if (! $this->_temp['odt'] instanceof Bvb_Grid_Template_Odt) {
+        if (! $this->_temp['odt'] instanceof OdtTemplate) {
             $this->setTemplate('odt', 'odt');
         }
 
@@ -93,11 +98,11 @@ class Bvb_Grid_Deploy_Odt extends Bvb_Grid implements Bvb_Grid_Deploy_DeployInte
         }
 
         if (! is_dir($this->_deploy['dir'])) {
-            throw new Bvb_Grid_Exception($this->_deploy['dir'] . ' is not a dir');
+            throw new Exception($this->_deploy['dir'] . ' is not a dir');
         }
 
         if (! is_writable($this->_deploy['dir'])) {
-            throw new Bvb_Grid_Exception($this->_deploy['dir'] . ' is not writable');
+            throw new Exception($this->_deploy['dir'] . ' is not writable');
         }
 
         $this->templateDir = explode('/', $this->templateInfo['dir']);
@@ -113,9 +118,9 @@ class Bvb_Grid_Deploy_Odt extends Bvb_Grid implements Bvb_Grid_Deploy_DeployInte
             $pathTemplate = APPLICATION_PATH . '/../' . rtrim($this->getLibraryDir(), '/') . '/' . substr($this->templateInfo['dir'], 0, - 4) . '/';
         }
 
-        Bvb_Grid_Deploy_Helper_File::deldir($this->_deploy['dir']);
+        Deploy\Helper\File::deldir($this->_deploy['dir']);
 
-        Bvb_Grid_Deploy_Helper_File::copyDir($pathTemplate, $this->_deploy['dir']);
+        Deploy\Helper\File::copyDir($pathTemplate, $this->_deploy['dir']);
 
         $xml = $this->_temp['odt']->globalStart();
 
@@ -202,8 +207,8 @@ class Bvb_Grid_Deploy_Odt extends Bvb_Grid implements Bvb_Grid_Deploy_DeployInte
 
         file_put_contents($this->_deploy['dir'] . "content.xml", $xml);
 
-        $final = Bvb_Grid_Deploy_Helper_File::scan_directory_recursively($this->_deploy['dir']);
-        $f = explode('|', Bvb_Grid_Deploy_Helper_File::zipPaths($final));
+        $final = Deploy\Helper\File::scan_directory_recursively($this->_deploy['dir']);
+        $f = explode('|', Deploy\Helper\File::zipPaths($final));
         array_pop($f);
 
         $zip = new ZipArchive();
@@ -231,7 +236,7 @@ class Bvb_Grid_Deploy_Odt extends Bvb_Grid implements Bvb_Grid_Deploy_DeployInte
             unlink($this->inicialDir . $this->_deploy['name'] . '.odt');
         }
 
-        Bvb_Grid_Deploy_Helper_File::deldir($this->_deploy['dir']);
+        Deploy\Helper\File::deldir($this->_deploy['dir']);
 
         die();
     }

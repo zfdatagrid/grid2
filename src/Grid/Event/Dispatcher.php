@@ -10,14 +10,19 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package   Bvb_Grid
+ * @package   Bvb\Grid
  * @author    Bento Vilas Boas <geral@petala-azul.com>
  * @copyright 2010 ZFDatagrid
  * @license   http://www.petala-azul.com/bsd.txt   New BSD License
  * @version   $Id: Dispatcher.php 1868 2011-09-21 17:32:55Z bento.vilas.boas@gmail.com $
  * @link      http://zfdatagrid.com
  */
-class Bvb_Grid_Event_Dispatcher {
+namespace Bvb\Grid\Event;
+
+use Bvb\Grid\Exception;
+use Bvb\Grid\Event;
+
+class Dispatcher {
 
     /**
      * List of observers
@@ -64,13 +69,13 @@ class Bvb_Grid_Event_Dispatcher {
      * @param int      $priority Priority execution
      * @param callable $callback Callback to be called
      *
-     * @return Bvb_Grid
+     * @return Bvb\Grid
      */
     public function connect($event, $callback, array $params = array(), $priority = 10)
     {
 
         if (!is_callable($callback)) {
-            throw new Bvb_Grid_Exception((string) $callback . " not callable");
+            throw new Exception((string) $callback . " not callable");
         }
 
         if (!isset($this->_listeners[$event])) {
@@ -110,7 +115,7 @@ class Bvb_Grid_Event_Dispatcher {
      *
      * @return void
      */
-    public function emit(Bvb_Grid_Event $event)
+    public function emit(Event $event)
     {
         if (isset($this->_listeners[$event->getName()])) {
 

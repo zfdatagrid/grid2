@@ -1,16 +1,20 @@
 <?php
+namespace Bvb\Grid\Source;
+
+use Bvb\Grid\Source\Db\DbAbstract;
+use Bvb\Grid\Source\Doctrine\Exception as ExceptionDoctrine;
 
 /**
  * Provides you the ability to use Doctrine as a source
  * with the Grid.
  *
- * @package   Bvb_Grid
+ * @package   Bvb\Grid
  * @author James Solomon <labs@clickbooth.com>
  */
 
-class Bvb_Grid_Source_Doctrine
-    extends Bvb_Grid_Source_Db_DbAbstract
-        implements Bvb_Grid_Source_SourceInterface
+class Doctrine
+    extends DbAbstract
+        implements SourceInterface
 {
 
     protected $_totalRecords;
@@ -52,7 +56,7 @@ class Bvb_Grid_Source_Doctrine
 
         if (!$q instanceof Doctrine_Query) {
             require_once 'Bvb/Grid/Source/Doctrine/Exception.php';
-            throw new Bvb_Grid_Source_Doctrine_Exception(
+            throw new ExceptionDoctrine(
                 "Please provide only an instance of Doctrine_Query "
                  . "or a valid Doctrine_Record instance"
             );
@@ -339,7 +343,7 @@ class Bvb_Grid_Source_Doctrine
      * @param string $field
      * @param string $order
      * @param bool $reset
-     * @return Bvb_Grid_Source_Doctrine
+     * @return Bvb\Grid\Source\Doctrine
      */
     public function buildQueryOrder($field, $order, $reset = false)
     {
@@ -357,7 +361,7 @@ class Bvb_Grid_Source_Doctrine
      *
      * @param $start
      * @param $offset
-     * @return Bvb_Grid_Source_Doctrine
+     * @return Bvb\Grid\Source\Doctrine
      */
     public function buildQueryLimit($start, $offset)
     {
@@ -420,7 +424,7 @@ class Bvb_Grid_Source_Doctrine
          * This function seems to be needed to only return the
          * first order, even if more than one is present
          *
-         * @see Bvb_Grid_Source_Zend_Select::getSelectOrder()
+         * @see Bvb\Grid\Source\Zend\Select::getSelectOrder()
          */
         return $result[0];
     }
@@ -531,7 +535,7 @@ class Bvb_Grid_Source_Doctrine
      */
     public function addFullTextSearch($filter, $field)
     {
-        throw new Bvb_Grid_Source_Doctrine_Exception("Fulltext searching is currently not supported by the Doctrine Source");
+        throw new ExceptionDoctrine("Fulltext searching is currently not supported by the Doctrine Source");
     }
 
     /**
@@ -544,7 +548,7 @@ class Bvb_Grid_Source_Doctrine
      * @param $filter
      * @param $op
      * @param $completeField
-     * @return Bvb_Grid_Source_Doctrine
+     * @return BvbGrid_Source_Doctrine
      */
     public function addCondition($filter, $op, $completeField)
     {
@@ -724,7 +728,7 @@ class Bvb_Grid_Source_Doctrine
 
     /**
      * @todo Change to Doctrine Native function
-     * @see Bvb_Grid_Source_SourceInterface::quoteValue()
+     * @see Bvb\Grid\Source\SourceInterface::quoteValue()
      */
     public function quoteValue ($value)
     {
@@ -735,7 +739,7 @@ class Bvb_Grid_Source_Doctrine
     /**
      * Removes any order in query
      *
-     * @return Bvb_Grid_Source_Doctrine
+     * @return Bvb\Grid\Source\Doctrine
      */
     public function resetOrder()
     {
@@ -746,7 +750,7 @@ class Bvb_Grid_Source_Doctrine
     /**
      * Removes any limit in query
      *
-     * @return Bvb_Grid_Source_Doctrine
+     * @return Bvb\Grid\Source\Doctrine
      */
     public function resetLimit()
     {
@@ -783,7 +787,7 @@ class Bvb_Grid_Source_Doctrine
     /**
      * Will build out an array of form elements,
      * based on the column type and return the array
-     * to be used when loading the Bvb_Grid_Form
+     * to be used when loading the Bvb\Grid\Form
      *
      * @param array $cols
      * @param array $info
@@ -906,7 +910,7 @@ class Bvb_Grid_Source_Doctrine
      * and place it in the $_queryParts array for use
      * in many other places
      *
-     * @return Bvb_Grid_Source_Doctrine
+     * @return Bvb\Grid\Source\Doctrine
      */
     protected function _setSelectParts()
     {
@@ -958,7 +962,7 @@ class Bvb_Grid_Source_Doctrine
      * and place it in the $_queryParts array for use
      * in many other places
      *
-     * @return Bvb_Grid_Source_Doctrine
+     * @return Bvb\Grid\Source\Doctrine
      */
     protected function _setFromParts()
     {
@@ -994,7 +998,7 @@ class Bvb_Grid_Source_Doctrine
      * ALL columns for all tables given.
      *
      * NOTE: Since no SELECT was provided, to access these
-     * from within the Bvb_Grid_Data class, you will need to
+     * from within the Bvb\Grid\Data class, you will need to
      * use the table alias + "_" + column name
      *
      * <code>
@@ -1062,7 +1066,7 @@ class Bvb_Grid_Source_Doctrine
     {
         if (!is_string($from)) {
             require_once 'Bvb/Grid/Source/Doctrine/Exception.php';
-            throw new Bvb_Grid_Source_Doctrine_Exception('Provided param needs to be a string only');
+            throw new ExceptionDoctrine('Provided param needs to be a string only');
         }
 
         $return = array();
@@ -1150,7 +1154,7 @@ class Bvb_Grid_Source_Doctrine
         if (!is_string($column)) {
             $type = gettype($column);
             require_once 'Bvb/Grid/Source/Doctrine/Exception.php';
-            throw new Bvb_Grid_Source_Doctrine_Exception('The $column param needs to be a string, ' . $type . ' provided');
+            throw new ExceptionDoctrine('The $column param needs to be a string, ' . $type . ' provided');
         }
 
         if (empty($this->_queryParts['from']['alias'])) {
@@ -1173,7 +1177,7 @@ class Bvb_Grid_Source_Doctrine
         if (!is_string($alias)) {
             $type = gettype($alias);
             require_once 'Bvb/Grid/Source/Doctrine/Exception.php';
-            throw new Bvb_Grid_Source_Doctrine_Exception('The $alias param needs to be a string, ' . $type . ' provided');
+            throw new ExceptionDoctrine('The $alias param needs to be a string, ' . $type . ' provided');
         }
 
         if ($this->_queryParts['from']['alias'] == $alias) {
@@ -1200,7 +1204,7 @@ class Bvb_Grid_Source_Doctrine
         if (!is_string($table)) {
             $type = gettype($table);
             require_once 'Bvb/Grid/Source/Doctrine/Exception.php';
-            throw new Bvb_Grid_Source_Doctrine_Exception('The $table param needs to be a string, ' . $type . ' provided');
+            throw new ExceptionDoctrine('The $table param needs to be a string, ' . $type . ' provided');
         }
 
         if ($this->_queryParts['from']['tableName'] == $table) {

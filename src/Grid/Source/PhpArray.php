@@ -10,14 +10,18 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package   Bvb_Grid
+ * @package   Bvb\Grid
  * @author    Bento Vilas Boas <geral@petala-azul.com>
  * @copyright 2010 ZFDatagrid
  * @license   http://www.petala-azul.com/bsd.txt   New BSD License
  * @version   $Id: Array.php 1900 2012-03-18 14:33:27Z ivomonteiro@gmail.com $
  * @link      http://zfdatagrid.com
  */
-class Bvb_Grid_Source_Array implements Bvb_Grid_Source_SourceInterface {
+namespace Bvb\Grid\Source;
+
+use Bvb\Grid\Exception;
+
+class PhpArray implements SourceInterface {
 
     /**
      * Fields list
@@ -474,7 +478,7 @@ class Bvb_Grid_Source_Array implements Bvb_Grid_Source_SourceInterface {
                 return round(array_sum($array) / count($array));
                 break;
             default:
-                throw new Bvb_Grid_Exception('Operation not found');
+                throw new Exception('Operation not found');
                 break;
         }
     }
@@ -508,7 +512,7 @@ class Bvb_Grid_Source_Array implements Bvb_Grid_Source_SourceInterface {
     public function fetchDetail(array $where)
     {
         if (count($where) > 1) {
-            throw new Bvb_Grid_Exception('At this moment only arrays with one primary key are supported');
+            throw new Exception('At this moment only arrays with one primary key are supported');
         }
 
         $field = key($where);
@@ -662,7 +666,7 @@ class Bvb_Grid_Source_Array implements Bvb_Grid_Source_SourceInterface {
     {
         if (empty($fields)) {
             if (!$pk = $this->getIdentifierColumns($table)) {
-                throw new Bvb_Grid_Exception('No primary key found');
+                throw new Exception('No primary key found');
             }
         } else {
             $pk = $fields;
@@ -704,7 +708,7 @@ class Bvb_Grid_Source_Array implements Bvb_Grid_Source_SourceInterface {
      * Defines primary key
      *
      * @param array $pk
-     * @return Bvb_Grid_Source_Array
+     * @return Bvb\Grid\Source\PhpArray
      */
     public function setPrimaryKey(array $pk)
     {

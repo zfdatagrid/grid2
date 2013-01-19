@@ -10,15 +10,19 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package   Bvb_Grid
+ * @package   Bvb\Grid
  * @author    Bento Vilas Boas <geral@petala-azul.com>
  * @copyright 2010 ZFDatagrid
  * @license   http://www.petala-azul.com/bsd.txt   New BSD License
  * @version   $Id: Table.php 1791 2011-05-31 03:19:53Z bento.vilas.boas@gmail.com $
  * @link      http://zfdatagrid.com
  */
+namespace Bvb\Grid\Source\Zend;
 
-class Bvb_Grid_Source_Zend_Table extends Bvb_Grid_Source_Zend_Select
+use Bvb\Grid\Source\Zend\Select as SelectZendSource;
+use Bvb\Grid\Exception;
+
+class Table extends SelectZendSource
 {
 
     private $_model;
@@ -136,7 +140,7 @@ class Bvb_Grid_Source_Zend_Table extends Bvb_Grid_Source_Zend_Select
             if ( is_array($sel['columns']) ) {
 
                 if ( ! is_array($sel['refColumns']) || (count($sel['columns']) != count($sel['refColumns'])) ) {
-                    throw new Bvb_Grid_Exception('Mapping of ' . $sel['refTableClass'] . ' is wrong: columns and refColumns must have same type. In case of arrays, they must have same length.');
+                    throw new Exception('Mapping of ' . $sel['refTableClass'] . ' is wrong: columns and refColumns must have same type. In case of arrays, they must have same length.');
                 }
 
                 if ( ! array_key_exists('refBvbColumns', $sel) ) {
@@ -163,7 +167,7 @@ class Bvb_Grid_Source_Zend_Table extends Bvb_Grid_Source_Zend_Select
 
             } else {
                 if ( is_array($sel['refColumns']) ) {
-                    throw new Bvb_Grid_Exception('Mapping of ' . $sel['refTableClass'] . ' is wrong: columns and refColumns must have same type.');
+                    throw new Exception('Mapping of ' . $sel['refTableClass'] . ' is wrong: columns and refColumns must have same type.');
                 }
 
                 if ( array_key_exists('refBvbColumns', $sel) ) {

@@ -10,14 +10,16 @@
  * obtain it through the world-wide-web, please send an email
  * to geral@petala-azul.com so we can send you a copy immediately.
  *
- * @package   Bvb_Grid
+ * @package   Bvb\Grid
  * @author    Bento Vilas Boas <geral@petala-azul.com>
  * @copyright 2010 ZFDatagrid
  * @license   http://www.petala-azul.com/bsd.txt   New BSD License
  * @version   $Id: Number.php 1905 2012-04-15 14:03:25Z ivomonteiro@gmail.com $
  * @link      http://zfdatagrid.com
  */
-class Bvb_Grid_Formatter_Number implements Bvb_Grid_Formatter_FormatterInterface {
+namespace Bvb\Grid\Formatter;
+
+class Number implements FormatterInterface {
 
     /**
      * Locale to be applied
