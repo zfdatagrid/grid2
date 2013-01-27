@@ -1,0 +1,64 @@
+<?php
+
+/**
+ * LICENSE
+ *
+ * This source file is subject to the new BSD license
+ * It is  available through the world-wide-web at this URL:
+ * http://www.petala-azul.com/bsd.txt
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to geral@petala-azul.com so we can send you a copy immediately.
+ *
+ * @package   BvbGrid\Grid
+ * @author    Bento Vilas Boas <geral@petala-azul.com>
+ * @copyright 2010 ZFDatagrid
+ * @license   http://www.petala-azul.com/bsd.txt   New BSD License
+ * @version   $Id: Image.php 1878 2011-11-24 02:36:38Z bento.vilas.boas@gmail.com $
+ * @link      http://zfdatagrid.com
+ */
+namespace BvbGrid\Grid\Formatter;
+
+class Image implements FormatterInterface {
+
+    protected $_options;
+    protected $_urlPrefix = '';
+
+    /**
+     * Constructor
+     *
+     * @param array $options
+     *
+     * @return void
+     */
+    public function __construct($options = array()) {
+        $this->_options = $options;
+
+        return;
+    }
+
+    /**
+     * Formats a given value
+     *
+     * @see library/Bvb/Grid/Formatter/Bvb_Grid_Formatter_FormatterInterface::format()
+     */
+    public function format($value) {
+        $attrs = '';
+        if (count($this->_options) > 0) {
+
+            if (isset($this->_options['urlPrefix'])) {
+                $this->_urlPrefix = $this->_options['urlPrefix'];
+                unset($this->_options['urlPrefix']);
+            }
+
+            foreach ($this->_options as $key => $name) {
+                $attrs .= "{$key}=\"$name\" ";
+            }
+        }
+
+        $value = $this->_urlPrefix . $value;
+
+        return "<img src=\"$value\" $attrs>";
+    }
+
+}

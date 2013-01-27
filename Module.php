@@ -1,6 +1,6 @@
 <?php
 
-namespace Grid;
+namespace BvbGrid;
 
 use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
 
