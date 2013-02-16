@@ -1,11 +1,3 @@
-ZFDataGrid
-=======
-Under development (port library to be ZF2 compatible)
-
-Introduction
-------------
-
-
 # BvbGrid Module for Zend Framework 2
 
 BvbGrid (aka [ZFDatagrid](http://zfdatagrid.com)) is and datagrid module for Zend Framework 2 that allows you to display and manage data from a variety of sources
